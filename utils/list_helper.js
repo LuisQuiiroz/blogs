@@ -19,21 +19,28 @@ const favoriteBlog = (blogs) => {
 //   //   ...acc,
 //   //   [blog.author]: ++acc[blog.author] || 1
 //   // }), {})
+
+//   // const result = {
+//   //   author: 'Robbert C. Martin',
+//   //   blogs: 3
+//   // }
+
+//   // const most = blogs.filter(blog => {
+//   //   const a = search[blog.author]
+//   //   console.log(Math.max(...a))
+//   // })
+//   // const search = blogs.reduce((acc, blog) => {
+//   //   acc[blog.author] = ++acc[blog.author] || 1
+//   //   return acc
+//   // }, {})
+
+//   // const duplicates = blogs.filter(blog => {
+//   //   return search[blog.author]
+//   // })
 //   // console.log(search)
-
-//   const search = blogs.reduce((acc, blog) => {
-//     acc[blog.author] = ++acc[blog.author] || 1
-//     return acc
-//   }, {})
-
-//   const duplicates = blogs.filter(blog => {
-//     return search[blog.author]
-//   })
-//   console.log(search)
-//   console.log(duplicates)
-//   return search
+//   // console.log(duplicates)
+//   // return search
 // }
-
 module.exports = {
   dummy, totalLikes, favoriteBlog
 }

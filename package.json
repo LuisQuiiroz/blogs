@@ -4,24 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
     "lint": "eslint .",
-    "test": "jest --verbose"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand "
   },
   "author": "Luis Quiroz",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "7.0.3",
     "eslint": "8.18.0",
     "jest": "28.1.2",
-    "nodemon": "2.0.18"
+    "nodemon": "2.0.18",
+    "supertest": "6.2.4"
   },
   "dependencies": {
+    "@types/jest": "^28.1.4",
     "cors": "2.8.5",
     "dotenv": "16.0.1",
     "express": "4.18.1",
     "lodash": "4.17.21",
-    "mongoose": "6.4.1"
+    "mongoose": "6.4.1",
+    "morgan": "^1.10.0"
   },
   "jest": {
     "testEnvironment": "node"
