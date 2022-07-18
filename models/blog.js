@@ -11,7 +11,12 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  likes: Number
+  likes: Number,
+  date: Date,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 // formatea los datos (visualmente) de mongoDB.
@@ -22,6 +27,7 @@ blogSchema.set('toJSON', {
     delete returnedObject.__v
   }
 })
+const Blog = mongoose.model('Blog', blogSchema)
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = Blog
 

@@ -46,20 +46,20 @@ describe('GET all blogs', () => {
 })
 
 describe('GET one blog', () => {
-  test('a specific note can be viewed', async () => {
+  test('a specific blog can be viewed', async () => {
     const blogsAtStart = await blogsInDb()
     const blogToView = blogsAtStart[0]
     const resultBlog = await api
       .get(`/api/blogs/${blogToView.id}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
-
-    expect(resultBlog.body).toEqual(blogToView)
+    const processedBlogToView = JSON.parse(JSON.stringify(blogToView))
+    expect(resultBlog.body).toEqual(processedBlogToView)
   })
 })
 
 describe('POST blog', () => {
-  test('a valid note can be added', async () => {
+  test('a valid blog can be added', async () => {
     const newBlog = {
       title: 'async/await simplifies making async calls',
       author: 'Luis Quiroz',
@@ -68,6 +68,8 @@ describe('POST blog', () => {
     }
     await api
       .post('/api/blogs')
+      .set('Content-type', 'application/json')
+      .set('Authorization', 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyZDVjZThkOWIxNzc5OWFiODBjYWJmNiIsImlhdCI6MTY1ODE3NDkwNX0.o6dyzUqSjz6B80G0nW9tyT4thLtNmIbaKaN8e3XL8pQ')
       .send(newBlog)
       .expect(200)
       .expect('Content-Type', /application\/json/)
@@ -87,6 +89,8 @@ describe('POST blog', () => {
     }
     await api
       .post('/api/blogs')
+      .set('Content-type', 'application/json')
+      .set('Authorization', 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyZDVjZThkOWIxNzc5OWFiODBjYWJmNiIsImlhdCI6MTY1ODE3NDkwNX0.o6dyzUqSjz6B80G0nW9tyT4thLtNmIbaKaN8e3XL8pQ')
       .send(newBlog)
       .expect(200)
       .expect('Content-Type', /application\/json/)
@@ -103,6 +107,8 @@ describe('POST blog', () => {
     }
     await api
       .post('/api/blogs')
+      .set('Content-type', 'application/json')
+      .set('Authorization', 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyZDVjZThkOWIxNzc5OWFiODBjYWJmNiIsImlhdCI6MTY1ODE3NDkwNX0.o6dyzUqSjz6B80G0nW9tyT4thLtNmIbaKaN8e3XL8pQ')
       .send(newBlog)
       .expect(400)
   })
@@ -112,8 +118,11 @@ describe('DELETE one blog', () => {
   test('succeeds with status code 204 if id is valid', async () => {
     const blogs = await blogsInDb()
     const blogToDelete = blogs[0]
+    console.log(blogToDelete)
     await api
       .delete(`/api/blogs/${blogToDelete.id}`)
+      .set('Content-type', 'application/json')
+      .set('Authorization', 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyZDVjZThkOWIxNzc5OWFiODBjYWJmNiIsImlhdCI6MTY1ODE3NDkwNX0.o6dyzUqSjz6B80G0nW9tyT4thLtNmIbaKaN8e3XL8pQ')
       .expect(204)
 
     const blogsAtEnd = await blogsInDb()
